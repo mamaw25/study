@@ -19,13 +19,13 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('me',[AuthController::class,'me']);
     Route::post('logout',[AuthController::class,'logout']);
 
-    // Reservations
+    // reservations
     Route::get('reservations',[ReservationController::class,'index']);
     Route::get('reservations/{id}',[ReservationController::class,'show']);
     Route::post('reservations',[ReservationController::class,'store']);
     Route::post('reservations/{id}/cancel',[ReservationController::class,'cancel']);
 
-    // Admin-only
+    // admin-only
     Route::middleware('role:admin')->group(function(){
         Route::post('rooms',[RoomController::class,'store']);
         Route::put('rooms/{id}',[RoomController::class,'update']);

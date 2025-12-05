@@ -15,7 +15,14 @@ return new class extends Migration
             $table->id('room_id');
             $table->string('room_name')->unique();
             $table->integer('capacity');
-            $table->enum('availability_status', ['available', 'unavailable'])->default('available');
+
+
+            // new foreign key reference to room_statuses table
+            $table->foreignId('room_status_id')
+                  ->default(1)
+                  ->constrained('room_statuses')
+                  ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
